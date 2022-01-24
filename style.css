@@ -1,0 +1,486 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #f3f3f3;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: #444;
+  height: 100vh;
+}
+.help {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  font-size: 2rem;
+  display: block;
+  padding: 1rem 2rem;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+.help:hover {
+  background-color: #333;
+  color: #fff;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.493);
+  backdrop-filter: blur(2px);
+  display: none;
+  z-index: 100;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: white;
+  border: 3px solid #333;
+  padding: 2rem 3rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: all 400ms;
+  z-index: 101;
+}
+
+.open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block;
+}
+
+.modal h2 {
+  font-size: 2.5rem;
+}
+.modal__close {
+  position: absolute;
+  top: 5%;
+  font-weight: bold;
+  right: 4%;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.modal p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.modal ul {
+  list-style: none;
+  font-size: 1.8rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal li {
+  margin-bottom: 1rem;
+}
+.modal__username {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+.modal__pin {
+  font-weight: bold;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 2rem;
+}
+
+.nav__welcome {
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.nav__logo {
+  height: 10.5rem;
+}
+
+.nav__form {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav__form input {
+  border-radius: 30px;
+  border: none;
+  background-color: white;
+  color: #333;
+  padding: 0.5rem 2rem;
+  text-align: center;
+  color: inherit;
+  width: 12rem;
+  height: 4rem;
+  transition: all 300ms;
+}
+
+.nav__form input:focus {
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.nav__form input::placeholder {
+  color: #999;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.nav__form button {
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.login__btn:hover,
+.login__btn:focus,
+.btn--sort:hover,
+.btn--sort:focus {
+  outline: none;
+  color: #777;
+}
+
+/* MAIN APP */
+main {
+  max-width: 100rem;
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: auto repeat(3, 15rem) auto;
+  gap: 2rem;
+  /* opacity: 0; */
+  transition: all 1s;
+}
+
+.balance {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1/-1;
+}
+
+.textBalance {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: -0.2rem;
+}
+
+.dateTime {
+  font-size: 1.4rem;
+  color: #888;
+}
+
+.currentBalance {
+  font-size: 4.5rem;
+  font-weight: 400;
+}
+
+.movements {
+  grid-row: 2 / 5;
+  overflow: scroll;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.movements__row {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 3.5rem;
+}
+
+.movements__type {
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+}
+
+.movements__type--deposit {
+  background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+
+.movements__type--withdrawal {
+  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+
+.movements__date {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.movements__value {
+  margin-left: auto;
+  font-size: 1.7rem;
+}
+
+/* SUMMARY */
+
+.summary {
+  grid-row: 5/6;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+  padding: 0 0.3rem;
+}
+
+.summary__label {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-right: 0.8rem;
+}
+
+.summary__value {
+  font-size: 2.2rem;
+  margin-right: 2.5rem;
+}
+
+.summary__value--in,
+.summary__value--interest {
+  color: #66c873;
+}
+
+.summary__value--out {
+  color: #f5465d;
+}
+
+.summary .btn--sort {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+/* OPERATIONS */
+
+.operation {
+  padding: 3rem 4rem;
+  border-radius: 1rem;
+  color: #333;
+}
+
+.operation h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.operation--transfer {
+  background: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+
+.operation--loan {
+  background: linear-gradient(to top left, #39b385, #9be15d);
+}
+
+.operation--close {
+  background: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+
+.operation .form {
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows: 3rem auto;
+  gap: 0.4rem 1rem;
+}
+
+.operation .form__loans {
+  grid-template-columns: 2.5fr 1fr 2.5fr;
+}
+
+.operation .form__input {
+  width: 100%;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #333;
+  padding: 0.3rem 1rem;
+  transform: all 300ms;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.form__label {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.form__label--loan {
+  grid-row: 2/3;
+}
+
+.operation .form__btn {
+  background-color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  font-size: 1.8rem;
+  transform: all 300ms;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.operation .form__btn:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+/* TIMER */
+.logout__timer {
+  justify-self: end;
+  align-self: center;
+  padding-right: 1rem;
+  font-size: 1.25rem;
+}
+
+.logout__timer .timer {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 900px) {
+  .operation {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  main {
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto repeat(3, 15rem) auto auto auto auto;
+  }
+  .nav__logo {
+    height: 7rem;
+  }
+  .textBalance {
+    font-size: 1.8rem;
+  }
+  .currentBalance {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  .summary__value {
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  .movements {
+    grid-column: 1/-1;
+    grid-row: 2/5;
+  }
+
+  .operation--transfer {
+    grid-column: 1/-1;
+    grid-row: 6;
+    justify-self: center;
+  }
+  .operation h2 {
+    text-align: center;
+  }
+  .operation--loan {
+    grid-column: 1/-1;
+    grid-row: 7;
+    justify-self: center;
+  }
+
+  .operation--close {
+    grid-column: 1/-1;
+    grid-row: 8;
+    justify-self: center;
+  }
+  .summary {
+    grid-row: 5;
+    grid-column: 1/2;
+  }
+  .logout__timer {
+    grid-row: 5;
+    grid-column: 2/3;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  main {
+    grid-template-rows: auto repeat(3, 15rem) auto auto auto auto auto;
+  }
+  .summary {
+    grid-column: 1/-1;
+  }
+  .logout__timer {
+    grid-row: 9;
+    grid-column: 1/-1;
+    justify-self: center;
+  }
+  .modal {
+    padding: 0.5rem 1rem;
+  }
+  .modal ul {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  html {
+    font-size: 55%;
+  }
+  nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.5rem;
+  }
+  .nav__welcome {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+  .nav__logo {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    justify-self: center;
+  }
+  .nav__form {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 411px) {
+  .summary {
+    justify-content: flex-start;
+    gap: 0.3rem;
+  }
+  .summary__label {
+    margin-right: 0.1rem;
+  }
+  .summary__value {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-right: 1.25rem;
+  }
+  .modal__username {
+    margin-right: 0.3rem;
+  }
+}
